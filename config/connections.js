@@ -58,7 +58,7 @@ module.exports.connections = {
   ***************************************************************************/
   localMongo: {
     adapter: 'sails-mongo',
-    url: process.env.MONGOLAB_URI || 'mongodb://localhost/locus' //provisory
+    url: process.env.MONGOLAB_URI || 'mongodb://localhost/queueone' //provisory
   },
 
   herokuMongoLab: {
