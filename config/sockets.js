@@ -65,7 +65,7 @@ module.exports.sockets = {
   *                                                                          *
   ***************************************************************************/
 
-  // grant3rdPartyCookie: true,
+  grant3rdPartyCookie: true,
 
 
 
@@ -136,6 +136,6 @@ module.exports.sockets = {
   * transport should be disabled.                                            *
   *                                                                          *
   ***************************************************************************/
-  // transports: ["polling", "websocket"]
+  transports: ["polling", "websocket"]
 
 };
