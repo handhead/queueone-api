@@ -14,9 +14,6 @@ module.exports = {
     lastName:{
       type: 'string',
       required: true
-    },
-    user: {
-      model:'user'
     }
   }
 };

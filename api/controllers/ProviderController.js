@@ -9,12 +9,15 @@ module.exports = {
 
   create: function(req, res, next) {
     var params = req.body;
-    User.create({
-      email: params.login,
-      password: params.password
-    }).exec(function userCreated(err, user) {
-      if(err) res.json(err.status, err.summary);
-      return res.json(200,user);
+
+    Provider.create(params).exec(function userCreated(err, user) {
+      if(err) return res.json(err.status, err);
+
+      JWTService.issue(user, function tokenCreated(token) {
+        return res.json(200, {
+          token: token
+        });
+      });
     });
   }
 };

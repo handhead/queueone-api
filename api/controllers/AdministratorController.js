@@ -9,7 +9,7 @@ module.exports = {
 
   create: function(req, res, next) {
     var params = req.body;
-    User.create({
+    Administrator.create({
       email: params.login,
       password: params.password
     }).exec(function userCreated(err, user) {

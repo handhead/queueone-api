@@ -21,9 +21,19 @@ module.exports = {
       required:true,
       unique:true
     },
-    user: {
-      model: 'user',
-      unique:true
+    password:{
+      type: 'string',
+      required: true
+    },
+    email: {
+      type: 'string',
+      required: true,
+      unique: true
     }
+  },
+
+  beforeCreate: function (user, next) {
+    user.password = CipherService.hashPassword(user.password);
+    next();
   }
 };
