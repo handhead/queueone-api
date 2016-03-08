@@ -8,19 +8,42 @@
 module.exports = {
 
   attributes: {
-    login:{
-      type: 'string',
-      required: true,
-      unique: true
-    },
     password:{
       type: 'string',
       required: true
+    },
+    consumer: {
+      model: 'consumer',
+      unique: true
+    },
+    provider: {
+      model: 'provider',
+      unique: true
+    },
+    administrator: {
+      model: 'administrator',
+      unique: true
+    },
+    email: {
+      type: 'string',
+      required: true,
+      unique: true
     }
   },
 
   beforeCreate: function (user, next) {
     user.password = CipherService.hashPassword(user.password);
+    next();
+  },
+
+  afterCreate: function(user, next) {
+    if(user.consumer){
+      return Consumer.update({id:user.consumer}, {user: user.id}).exec(next);
+    }else if(user.provider){
+
+    }else if(user.administrator){
+
+    }
     next();
   }
 };
