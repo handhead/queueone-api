@@ -39,5 +39,10 @@ module.exports = {
       required:true,
       unique: true
     }
+  },
+
+  beforeCreate: function (user, next) {
+    user.password = CipherService.hashPassword(user.password);
+    next();
   }
 };
