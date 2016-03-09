@@ -26,25 +26,38 @@ module.exports = {
   signin: function (req, res, next) {
     var params = req.body;
     if (!params.cpf||!params.password){
-      return res.json(403, {
-        message: 'Credenciais Inválidas, tente novamente.'
+      return res.json(400, {
+        message: 'Credenciais inválidas.'
       });
     } else {
       Consumer.findOne({ cpf: params.cpf })
-        .exec(function consumerFouded(err, user) {
+        .exec(function consumerFouded(err, consumer) {
           if (err) return res.json(err.status, err);
-          if (user && CipherService.comparePassword(params.password, user)) {
+          if (consumer && CipherService.comparePassword(params.password, consumer)) {
             delete user.password;
             JWTService.issue(user, function tokenCreated(token) {
-              return res.json(200, {token: token});
+              return res.json(200, {token: token, type: "Bearer", expires_in: "never"});
             });
           } else {
-            return res.json(403, {
-              message: 'Credenciais Inválidas, tente novamente.'
+            return res.json(400, {
+              message: 'Credenciais inválidas, tente novamente.'
             });
           }
         });
     }
   },
+
+  details: function(req, res, next){
+    Consumer.findOne({cpf: req.decoded.cpf})
+      .exec(function consumerFounded(err, consumer){
+        if (err) return res.json(err.status, err);
+        return res.json(200,{
+          firstName: consumer.firstName,
+          lastName: consumer.lastName,
+          cpf: consumer.lastName,
+          email: consumer.email
+        })
+      })
+  }
 };
 

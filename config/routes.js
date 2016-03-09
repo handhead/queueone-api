@@ -34,6 +34,15 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
+  },
+
+  'POST /consumer/signin' : 'ConsumerController.signin',
+
+  'GET /consumer': {
+    target: 'ConsumerController.details',
+    cors: {
+      headers: 'authorization'
+    }
   }
 
   /***************************************************************************
