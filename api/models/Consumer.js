@@ -5,15 +5,7 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
-var CPF = require("cpf_cnpj").CPF;
-
 module.exports = {
-
-  types: {
-    isCPF: function(cpf) {
-      return CPF.isValid(cpf);
-    }
-  },
 
   attributes: {
     firstName:{
@@ -27,8 +19,7 @@ module.exports = {
     cpf: {
       type: 'string',
       required:true,
-      unique:true,
-      isCPF: true
+      unique:true
     },
     password:{
       type: 'string',
