@@ -25,18 +25,17 @@ module.exports = {
   /** POST /provider/signin */
   signin: function (req, res, next) {
     var params = req.body;
-    console.log(params);
     if (!params.cnpj||!params.password){
       return res.json(400, {
         message: 'Credenciais inválidas.'
       });
     } else {
       Provider.findOne({ cnpj: params.cnpj })
-        .exec(function consumerFouded(err, consumer) {
+        .exec(function consumerFouded(err, provider) {
           if (err) return res.json(err.status, err);
-          if (consumer && CipherService.comparePassword(params.password, consumer)) {
-            delete consumer.password;
-            JWTService.issue(consumer, function tokenCreated(token) {
+          if (consumer && CipherService.comparePassword(params.password, provider)) {
+            delete provider.password;
+            JWTService.issue(provider, function tokenCreated(token) {
               return res.json(200, {token: token, type: "Bearer", expires_in: "never"});
             });
           } else {
@@ -50,14 +49,14 @@ module.exports = {
 
   /** GET /provider */
   details: function(req, res, next){
-    Consumer.findOne({cpf: req.decoded.cpf})
-      .exec(function consumerFounded(err, consumer){
+    Provider.findOne({cnpj: req.decoded.cnpj})
+      .exec(function consumerFounded(err, provider){
         if (err) return res.json(err.status, err);
         return res.json(200,{
-          firstName: consumer.firstName,
-          lastName: consumer.lastName,
-          cpf: consumer.lastName,
-          email: consumer.email
+          fantasyName: provider.fantasyName,
+          companyName: provider.companyName,
+          cnpj: provider.cnpj,
+          email: provider.email
         })
       })
   }

@@ -55,7 +55,7 @@ module.exports = {
         return res.json(200,{
           firstName: consumer.firstName,
           lastName: consumer.lastName,
-          cpf: consumer.lastName,
+          cpf: consumer.cpf,
           email: consumer.email
         })
       })
