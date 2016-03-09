@@ -5,7 +5,16 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
+var CNPJ = require("cpf_cnpj").CNPJ;
+
 module.exports = {
+
+  types: {
+    isCNPJ: function(cnpj) {
+      return CNPJ.isValid(cnpj);
+    }
+  },
+
   attributes: {
     companyName: {
       type: 'string',
@@ -17,7 +26,18 @@ module.exports = {
     },
     cnpj: {
       type: 'string',
-      required:true
+      required:true,
+      unique: true,
+      isCNPJ: true
+    },
+    password: {
+      type: 'string',
+      required: true
+    },
+    email: {
+      type: 'email',
+      required:true,
+      unique: true
     }
   }
 };

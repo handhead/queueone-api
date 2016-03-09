@@ -53,6 +53,12 @@ module.exports.policies = {
     '*': 'tokenValidate',
     'create': true,
     'signin': true
+  },
+
+  ProviderController: {
+    '*': 'tokenValidate',
+    'create': true,
+    'signin': true
   }
 
 };

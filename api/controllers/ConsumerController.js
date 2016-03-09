@@ -47,6 +47,7 @@ module.exports = {
     }
   },
 
+  /** GET /consumer */
   details: function(req, res, next){
     Consumer.findOne({cpf: req.decoded.cpf})
       .exec(function consumerFounded(err, consumer){
