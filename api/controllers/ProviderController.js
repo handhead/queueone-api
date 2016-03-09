@@ -25,6 +25,7 @@ module.exports = {
   /** POST /provider/signin */
   signin: function (req, res, next) {
     var params = req.body;
+    console.log(params);
     if (!params.cnpj||!params.password){
       return res.json(400, {
         message: 'Credenciais inválidas.'
@@ -35,7 +36,7 @@ module.exports = {
           if (err) return res.json(err.status, err);
           if (consumer && CipherService.comparePassword(params.password, consumer)) {
             delete user.password;
-            JWTService.issue(user, function tokenCreated(token) {
+            JWTService.issue(consumer, function tokenCreated(token) {
               return res.json(200, {token: token, type: "Bearer", expires_in: "never"});
             });
           } else {

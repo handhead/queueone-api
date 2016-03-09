@@ -63,10 +63,10 @@ module.exports.routes = {
    * Provider Routes
    */
 
-  'POST /provider/signin' : 'ConsumerController.signin',
+  'POST /provider/signin' : 'ProviderController.signin',
 
   'GET /provider': {
-    target: 'ConsumerController.details',
+    target: 'ProviderController.details',
     cors: {
       headers: 'authorization'
     }
