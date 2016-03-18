@@ -34,8 +34,8 @@ module.exports = {
         .exec(function consumerFouded(err, consumer) {
           if (err) return res.json(err.status, err);
           if (consumer && CipherService.comparePassword(params.password, consumer)) {
-            delete user.password;
-            JWTService.issue(user, function tokenCreated(token) {
+            delete consumer.password;
+            JWTService.issue(consumer, function tokenCreated(token) {
               return res.json(200, {token: token, type: "Bearer", expires_in: "never"});
             });
           } else {
