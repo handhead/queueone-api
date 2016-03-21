@@ -33,8 +33,7 @@ module.exports = {
       Provider.findOne({ cnpj: params.cnpj })
         .exec(function consumerFouded(err, provider) {
           if (err) return res.json(err.status, err);
-          if (consumer && CipherService.comparePassword(params.password, provider)) {
-            delete provider.password;
+          if (provider && provider.verifyPassword(params.password)){
             JWTService.issue(provider, function tokenCreated(token) {
               return res.json(200, {token: token, type: "Bearer", expires_in: "never"});
             });
@@ -55,6 +54,29 @@ module.exports = {
         delete provider.password;
         return res.json(200, provider)
       })
+  },
+
+  /** GET /providers */
+  all: function(req, res, next) {
+    Provider.find()
+      .exec(function providersFounded(err, providers) {
+        if(err) return res.json(err.status, err);
+        return res.json(200, {
+          providers: providers
+        });
+      });
+  },
+
+  /** GET /service/:providerId */
+  services: function(req, res, next){
+    var providerId = req.param('providerId');
+    Service.find({owner: providerId})
+      .exec(function servicesFounded(err, services){
+        if (err) return res.json(err.status, err);
+        return res.json(200, services)
+      })
   }
+
+
 };
 

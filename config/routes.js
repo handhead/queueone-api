@@ -72,14 +72,23 @@ module.exports.routes = {
     }
   },
 
-  /**
-   * Service Routes
-   */
+  'GET /providers': {
+    target: 'ProviderController.all',
+    cors: {
+      headers: 'authorization'
+    }
+  },
 
   'GET /provider/:providerId/services' : {
-    target: 'ServiceController.providerServices',
+    target: 'ProviderController.services',
     cors: {
       headers: 'authorization'
     }
   }
+
+  /**
+   * Service Routes
+   */
+
+
 };

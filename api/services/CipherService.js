@@ -9,8 +9,8 @@ module.exports = {
      });*/
   },
 
-  comparePassword: function(password, user){
-    return bcrypt.compareSync(password, user.password);
+  comparePassword: function(password, userPassword){
+    return bcrypt.compareSync(password, userPassword);
     /*bcrypt.compare(password, user.password, function (err, match) {
      return match;
      });*/

@@ -29,6 +29,14 @@ module.exports = {
       type: 'email',
       required: true,
       unique: true
+    },
+    verifyPassword: function (password) {
+      return CipherService.comparePassword(password, this.password);
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.password;
+      return obj;
     }
   },
 

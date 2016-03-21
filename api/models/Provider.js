@@ -33,6 +33,14 @@ module.exports = {
     services: {
       collection:'service',
       via: 'owner'
+    },
+    verifyPassword: function (password) {
+      return CipherService.comparePassword(password, this.password);
+    },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.password;
+      return obj;
     }
   },
 
