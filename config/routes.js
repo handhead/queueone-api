@@ -70,5 +70,16 @@ module.exports.routes = {
     cors: {
       headers: 'authorization'
     }
+  },
+
+  /**
+   * Service Routes
+   */
+
+  'GET /provider/:providerId/services' : {
+    target: 'ServiceController.providerServices',
+    cors: {
+      headers: 'authorization'
+    }
   }
 };

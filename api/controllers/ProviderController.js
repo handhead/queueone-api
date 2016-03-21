@@ -52,12 +52,8 @@ module.exports = {
     Provider.findOne({cnpj: req.decoded.cnpj})
       .exec(function consumerFounded(err, provider){
         if (err) return res.json(err.status, err);
-        return res.json(200,{
-          fantasyName: provider.fantasyName,
-          companyName: provider.companyName,
-          cnpj: provider.cnpj,
-          email: provider.email
-        })
+        delete provider.password;
+        return res.json(200, provider)
       })
   }
 };

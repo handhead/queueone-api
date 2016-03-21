@@ -29,6 +29,10 @@ module.exports = {
       type: 'email',
       required:true,
       unique: true
+    },
+    services: {
+      collection:'service',
+      via: 'owner'
     }
   },
 

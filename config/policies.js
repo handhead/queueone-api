@@ -59,6 +59,10 @@ module.exports.policies = {
     '*': 'tokenValidate',
     'create': true,
     'signin': true
+  },
+
+  ServiceController: {
+    '*': 'tokenValidate'
   }
 
 };
