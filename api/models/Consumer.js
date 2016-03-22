@@ -8,20 +8,20 @@
 module.exports = {
 
   attributes: {
-    firstName:{
+    firstName: {
       type: 'string',
       required: true
     },
-    lastName:{
+    lastName: {
       type: 'string',
       required: true
     },
     cpf: {
       type: 'string',
-      required:true,
-      unique:true
+      required: true,
+      unique: true
     },
-    password:{
+    password: {
       type: 'string',
       required: true
     },
@@ -33,7 +33,7 @@ module.exports = {
     verifyPassword: function (password) {
       return CipherService.comparePassword(password, this.password);
     },
-    toJSON: function() {
+    toJSON: function () {
       var obj = this.toObject();
       delete obj.password;
       return obj;

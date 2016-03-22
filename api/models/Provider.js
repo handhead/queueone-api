@@ -18,7 +18,7 @@ module.exports = {
     },
     cnpj: {
       type: 'string',
-      required:true,
+      required: true,
       unique: true
     },
     password: {
@@ -27,20 +27,20 @@ module.exports = {
     },
     email: {
       type: 'email',
-      required:true,
+      required: true,
       unique: true
     },
     services: {
-      collection:'service',
+      collection: 'service',
       via: 'owner'
     },
     coordinates: {
-      type:'json'
+      type: 'json'
     },
     verifyPassword: function (password) {
       return CipherService.comparePassword(password, this.password);
     },
-    toJSON: function() {
+    toJSON: function () {
       var obj = this.toObject();
       delete obj.password;
       return obj;

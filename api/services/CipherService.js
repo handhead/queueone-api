@@ -1,3 +1,11 @@
+/**
+ * ChipherService
+ *
+ * @module      :: Services
+ * @description :: Simple service to hash and compare password
+ * @docs        :: http://sailsjs.org/#!/documentation/concepts/Services
+ *
+ */
 var bcrypt = require('bcrypt');
 
 module.exports = {
@@ -9,7 +17,7 @@ module.exports = {
      });*/
   },
 
-  comparePassword: function(password, userPassword){
+  comparePassword: function (password, userPassword) {
     return bcrypt.compareSync(password, userPassword);
     /*bcrypt.compare(password, user.password, function (err, match) {
      return match;

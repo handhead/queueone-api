@@ -6,7 +6,7 @@
  * @docs        :: http://sailsjs.org/#!/documentation/concepts/Policies
  *
  */
-module.exports = function(req, res, next) {
+module.exports = function (req, res, next) {
 
   if (req.headers && req.headers.authorization) {
     JWTService.verify(req.headers.authorization, function (err, decoded) {
