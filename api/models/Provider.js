@@ -34,6 +34,9 @@ module.exports = {
       collection:'service',
       via: 'owner'
     },
+    coordinates: {
+      type:'json'
+    },
     verifyPassword: function (password) {
       return CipherService.comparePassword(password, this.password);
     },
