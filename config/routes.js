@@ -64,6 +64,13 @@ module.exports.routes = {
    */
 
   'POST /provider/signin': 'ProviderController.signin',
+  
+  'GET /provider/check': {
+    target: 'ProviderController.check',
+    cors: {
+      headers: 'authorization'
+    }
+  },
 
   'GET /provider': {
     target: 'ProviderController.details',
